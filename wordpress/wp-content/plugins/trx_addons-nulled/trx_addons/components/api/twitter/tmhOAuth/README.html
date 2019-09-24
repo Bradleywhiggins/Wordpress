@@ -1,0 +1,61 @@
+<html>
+      <head>
+        <meta charset="UTF-8">
+        <title>README.md</title>
+      </head>
+      <body>
+        <h1 id="tmhoauth">tmhOAuth</h1>
+<p>An OAuth library written in PHP by @themattharris.</p>
+<p><strong>Disclaimer</strong>: This project is a work in progress. Please use the issue tracker
+to report any enhancements or issues you encounter.</p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>Support OAuth 1.0A</li>
+<li>Use Authorisation headers instead of query string or POST parameters</li>
+<li>Allow uploading of images</li>
+<li>Provide enough information to assist with debugging</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<p>The library has been tested with PHP 5.3+ and relies on CURL and hash_hmac. The
+vast majority of hosting providers include these libraries and run with PHP 5.1+.</p>
+<p>The code makes use of hash_hmac, which was introduced in PHP 5.1.2. If your version
+of PHP is lower than this you should ask your hosting provider for an update.</p>
+<h2 id="a-note-about-security-and-ssl">A note about security and SSL</h2>
+<p>Version 0.60 hardened the security of the library and defaulted <code>curl_ssl_verifypeer</code> to <code>true</code>.
+As some hosting providers do not provide the most current certificate root file
+it is now included in this repository. If the version is out of date OR you prefer
+to download the certificate roots yourself, you can get them
+from: <a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem</a></p>
+<p>If you are getting http code 0 responses inspect <code>$tmhOAuth-&gt;response[&#39;error&#39;]</code> to see what the
+problem is. usually code 0 means cacert.pem cannot be found, and it can be fixed by putting cacert.pem
+in the location tmhOAuth is looking for it (indicated in the <code>$tmhOAuth-&gt;response[&#39;error&#39;]</code> message), or
+by setting <code>$tmhOAuth-&gt;config[&#39;curl_cainfo&#39;]</code> and <code>$tmhOAuth-&gt;config[&#39;curl_capath&#39;]</code> values. setting
+<code>$tmhOAuth-&gt;config[&#39;use_ssl&#39;]</code> to false <em>IS NOT</em> the way to solve this problem.</p>
+<h2 id="usage">Usage</h2>
+<p>This will be built out later but for the moment review the examples repository
+<a href="https://github.com/themattharris/tmhOAuthExamples">https://github.com/themattharris/tmhOAuthExamples</a> for ways the library can be
+used. Each example contains instructions on how to use it.</p>
+<p>For guidance on how to use <a href="http://getcomposer.org">composer</a> to install tmhOAuth see the
+<a href="https://github.com/themattharris/tmhOAuthExamples">tmhOAuthExamples</a> project.</p>
+<h2 id="notes-for-users-of-previous-versions">Notes for users of previous versions</h2>
+<p>As of version 0.8.0 tmhUtilities is no longer included. If you found them useful open an issue against me
+and i&#39;ll create a new repository for them. version 0.8.0 also ignores <code>$tmhOAuth-&gt;config[&#39;v&#39;]</code>. if you used
+this before you should instead specify the API version in the path you pass to <code>$tmhOAuth-&gt;url</code></p>
+<p>Versions prior to 0.7.3 collapsed headers with the same value into one
+<code>$tmhOAuth-&gt;response[&#39;headers&#39;]</code> key. Since 0.7.3 headers with the same key will use an array
+to store their values.</p>
+<p>If you previously used version 0.4 be aware the utility functions
+have now been broken into their own file. Before you use version 0.5+ in your app
+test locally to ensure your code doesn&#39;t need tmhUtilities included.</p>
+<p>If you used custom HTTP request headers when they were defined as <code>&#39;key: value&#39;</code> strings
+you should now define them as <code>&#39;key&#39; =&gt; &#39;value&#39;</code> pairs.</p>
+<h2 id="change-history">Change History</h2>
+<p>This is now published on the tmhOAuth wiki <a href="https://github.com/themattharris/tmhOAuth/wiki/Change-History">https://github.com/themattharris/tmhOAuth/wiki/Change-History</a></p>
+<h2 id="community">Community</h2>
+<p>License: Apache 2 (see <a href="https://github.com/themattharris/tmhOAuth/blob/master/LICENSE">included LICENSE file</a>)</p>
+<p>Follow <a href="https://twitter.com/intent/follow?screen_name=tmhOAuth">@tmhOAuth</a> to receive updates on releases, or ask for support
+Follow me on Twitter: <a href="https://twitter.com/intent/follow?screen_name=themattharris">@themattharris</a>
+Check out the Twitter Developer Resources: <a href="https://dev.twitter.com">https://dev.twitter.com</a></p>
+
+      </body>
+    </html>
